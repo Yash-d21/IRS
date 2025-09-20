@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard - IRS Issue Reporting System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <h2>IRS</h2>
+                    <span>Issue Reporting System - Super Admin</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Sidebar">
+                    ☰
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-tooltip="Dashboard" data-section="dashboard-section">
+                    <i>🏠</i> <span>Dashboard</span>
+                </a>
+                <a href="#reports" class="nav-item" data-tooltip="All Reports" data-section="reports-section">
+                    <i>📋</i> <span>All Reports</span>
+                </a>
+                <a href="#users" class="nav-item" data-tooltip="User Management" data-section="users-section">
+                    <i>👥</i> <span>User Management</span>
+                </a>
+                <a href="#admins" class="nav-item" data-tooltip="Admin Management" data-section="admin-management-section">
+                    <i>👨‍💼</i> <span>Admin Management</span>
+                </a>
+                <a href="#system" class="nav-item" data-tooltip="System Settings" data-section="system-settings-section">
+                    <i>⚙️</i> <span>System Settings</span>
+                </a>
+                <a href="#analytics" class="nav-item" data-tooltip="Analytics" data-section="analytics-section">
+                    <i>📊</i> <span>Analytics</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container">
+            <div class="dashboard-header">
+                <h1>Super Admin Dashboard</h1>
+                <p>Complete system oversight and management</p>
+            </div>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3>0</h3>
+                        <p>Total Reports</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3>0</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍💼</div>
+                    <div class="stat-content">
+                        <h3>0</h3>
+                        <p>Admin Users</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚙️</div>
+                    <div class="stat-content">
+                        <h3>0</h3>
+                        <p>System Health</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-actions">
+                <button class="btn-primary" onclick="manageAdmins()">Manage Admins</button>
+                <button class="btn-secondary" onclick="viewAllUsers()">View All Users</button>
+                <button class="btn-secondary" onclick="systemSettings()">System Settings</button>
+                <button class="btn-secondary" onclick="viewAnalytics()">Advanced Analytics</button>
+            </div>
+
+            <div class="superadmin-panel">
+                <h2>Super Admin Controls</h2>
+                <div class="admin-actions">
+                    <button class="btn-primary" onclick="createAdmin()">Create Admin User</button>
+                    <button class="btn-secondary" onclick="modifyUserRoles()">Modify User Roles</button>
+                    <button class="btn-secondary" onclick="systemBackup()">System Backup</button>
+                    <button class="btn-secondary" onclick="auditLogs()">View Audit Logs</button>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h2>Recent System Activity</h2>
+                <div class="activity-list">
+                    <div class="no-activity">
+                        <p>No recent activity to display.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- All Reports Section -->
+            <div id="reports-section" class="reports-section">
+                <div class="section-header">
+                    <h1>All Reports</h1>
+                    <p>Complete oversight of all system reports</p>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn-primary" onclick="loadAllReports()">Refresh Reports</button>
+                    <button class="btn-secondary" onclick="exportData()">Export Data</button>
+                </div>
+                <div class="all-reports-list">
+                    <div class="no-reports">
+                        <p>Loading reports...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Management Section -->
+            <div id="users-section" class="users-section">
+                <div class="section-header">
+                    <h1>User Management</h1>
+                    <p>Complete user account management</p>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn-primary" onclick="loadUsers()">Refresh Users</button>
+                    <button class="btn-secondary" onclick="createUser()">Create User</button>
+                </div>
+                <div class="users-list">
+                    <div class="no-reports">
+                        <p>Loading users...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Management Section -->
+            <div id="admin-management-section" class="admin-management-section">
+                <div class="section-header">
+                    <h1>Admin Management</h1>
+                    <p>Manage admin users and their permissions</p>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn-primary" onclick="createAdmin()">Create Admin</button>
+                    <button class="btn-secondary" onclick="modifyUserRoles()">Modify Roles</button>
+                </div>
+                <div class="admin-list">
+                    <div class="no-reports">
+                        <p>Loading admins...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Settings Section -->
+            <div id="system-settings-section" class="system-settings-section">
+                <div class="section-header">
+                    <h1>System Settings</h1>
+                    <p>Configure system-wide settings and preferences</p>
+                </div>
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Database Management</h3>
+                        <p>Manage database connections and configurations</p>
+                        <button class="btn-secondary" onclick="manageDatabase()">Manage</button>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Security Settings</h3>
+                        <p>Configure security policies and access controls</p>
+                        <button class="btn-secondary" onclick="configureSecurity()">Configure</button>
+                    </div>
+                    <div class="setting-card">
+                        <h3>System Maintenance</h3>
+                        <p>Perform system maintenance and updates</p>
+                        <button class="btn-secondary" onclick="systemMaintenance()">Maintain</button>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Backup & Recovery</h3>
+                        <p>Manage system backups and disaster recovery</p>
+                        <button class="btn-secondary" onclick="backupRecovery()">Manage</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analytics-section" class="analytics-section">
+                <div class="section-header">
+                    <h1>Advanced Analytics</h1>
+                    <p>Comprehensive system analytics and reporting</p>
+                </div>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3 id="totalReports">0</h3>
+                        <p>Total Reports</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3 id="resolvedReports">0</h3>
+                        <p>Resolved Reports</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3 id="activeUsers">0</h3>
+                        <p>Active Users</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3 id="adminUsers">0</h3>
+                        <p>Admin Users</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3 id="systemUptime">99.9%</h3>
+                        <p>System Uptime</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3 id="avgResolutionTime">0</h3>
+                        <p>Avg Resolution Time (days)</p>
+                    </div>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn-primary" onclick="loadAnalytics()">Refresh Analytics</button>
+                    <button class="btn-secondary" onclick="generateReport()">Generate Report</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+    <script>
+        // Super admin dashboard specific functions
+        function manageAdmins() {
+            alert('Admin management feature coming soon!');
+        }
+
+        function viewAllUsers() {
+            alert('User overview feature coming soon!');
+        }
+
+        function systemSettings() {
+            alert('System settings feature coming soon!');
+        }
+
+        function viewAnalytics() {
+            alert('Advanced analytics feature coming soon!');
+        }
+
+        function createAdmin() {
+            alert('Create admin user feature coming soon!');
+        }
+
+        function modifyUserRoles() {
+            alert('User role modification feature coming soon!');
+        }
+
+        function systemBackup() {
+            alert('System backup feature coming soon!');
+        }
+
+        function auditLogs() {
+            alert('Audit logs feature coming soon!');
+        }
+
+        // Load user data on dashboard load
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const userRole = localStorage.getItem('userRole');
+            
+            if (user.email) {
+                document.querySelector('.dashboard-header h1').textContent = `Super Admin Dashboard - Welcome, ${user.user_metadata?.full_name || user.email}!`;
+            }
+            
+            // Verify super admin access
+            if (userRole !== 'superadmin') {
+                alert('Access denied. Super admin privileges required.');
+                window.location.href = 'login.html';
+            }
+            
+            // Load superadmin data
+            loadAllReports();
+            loadAnalytics();
+        });
+
+        async function loadUsers() {
+            try {
+                const { data, error } = await supabase.auth.admin.listUsers();
+                if (error) throw error;
+                
+                displayUsers(data.users || []);
+            } catch (error) {
+                console.error('Error loading users:', error);
+                document.querySelector('.users-list').innerHTML = '<div class="no-reports"><p>Error loading users.</p></div>';
+            }
+        }
+
+        function displayUsers(users) {
+            const usersList = document.querySelector('.users-list');
+            if (!usersList) return;
+            
+            if (users.length === 0) {
+                usersList.innerHTML = '<div class="no-reports"><p>No users found.</p></div>';
+                return;
+            }
+            
+            usersList.innerHTML = users.map(user => `
+                <div class="user-card">
+                    <div class="user-info">
+                        <h4>${user.user_metadata?.full_name || user.email}</h4>
+                        <p>${user.email} • ${user.created_at ? new Date(user.created_at).toLocaleDateString() : 'Unknown'}</p>
+                    </div>
+                    <div class="user-actions">
+                        <button class="btn-secondary" onclick="viewUser('${user.id}')">View</button>
+                        <button class="btn-primary" onclick="promoteToAdmin('${user.id}')">Promote</button>
+                        <button class="btn-danger" onclick="deleteUser('${user.id}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function loadAnalytics() {
+            try {
+                const { data: reports, error: reportsError } = await supabase
+                    .from('reports')
+                    .select('*');
+                
+                if (reportsError) throw reportsError;
+                
+                const { data: users, error: usersError } = await supabase.auth.admin.listUsers();
+                if (usersError) throw usersError;
+                
+                const totalReports = reports.length;
+                const resolvedReports = reports.filter(r => r.status === 'Resolved').length;
+                const activeUsers = users.users.length;
+                const adminUsers = users.users.filter(u => u.email === 'anirudhsharma@gmail.com').length;
+                const avgResolutionTime = calculateAvgResolutionTime(reports);
+                
+                document.getElementById('totalReports').textContent = totalReports;
+                document.getElementById('resolvedReports').textContent = resolvedReports;
+                document.getElementById('activeUsers').textContent = activeUsers;
+                document.getElementById('adminUsers').textContent = adminUsers;
+                document.getElementById('avgResolutionTime').textContent = avgResolutionTime;
+                
+            } catch (error) {
+                console.error('Error loading analytics:', error);
+            }
+        }
+
+        function calculateAvgResolutionTime(reports) {
+            const resolvedReports = reports.filter(r => r.status === 'Resolved' && r.updated_at);
+            if (resolvedReports.length === 0) return 0;
+            
+            const totalDays = resolvedReports.reduce((sum, report) => {
+                const created = new Date(report.created_at);
+                const resolved = new Date(report.updated_at);
+                const days = (resolved - created) / (1000 * 60 * 60 * 24);
+                return sum + days;
+            }, 0);
+            
+            return Math.round(totalDays / resolvedReports.length);
+        }
+
+        function createUser() {
+            alert('Create user feature coming soon!');
+        }
+
+        function viewUser(userId) {
+            alert(`View user ${userId} feature coming soon!`);
+        }
+
+        function promoteToAdmin(userId) {
+            if (confirm('Are you sure you want to promote this user to admin?')) {
+                alert(`Promote user ${userId} to admin feature coming soon!`);
+            }
+        }
+
+        function deleteUser(userId) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                alert(`Delete user ${userId} feature coming soon!`);
+            }
+        }
+
+        function createAdmin() {
+            alert('Create admin user feature coming soon!');
+        }
+
+        function modifyUserRoles() {
+            alert('User role modification feature coming soon!');
+        }
+
+        function manageDatabase() {
+            alert('Database management feature coming soon!');
+        }
+
+        function configureSecurity() {
+            alert('Security configuration feature coming soon!');
+        }
+
+        function systemMaintenance() {
+            alert('System maintenance feature coming soon!');
+        }
+
+        function backupRecovery() {
+            alert('Backup and recovery feature coming soon!');
+        }
+
+        function generateReport() {
+            alert('Report generation feature coming soon!');
+        }
+    </script>
+</body>
+</html>

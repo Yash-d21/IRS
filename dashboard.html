@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - IRS Issue Reporting System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <h2>IRS</h2>
+                    <span>Issue Reporting System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Sidebar">
+                    ☰
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-tooltip="Dashboard" data-section="dashboard-section">
+                    <i>🏠</i> <span>Dashboard</span>
+                </a>
+                <a href="#reports" class="nav-item" data-tooltip="My Reports" data-section="reports-section">
+                    <i>📋</i> <span>My Reports</span>
+                </a>
+                <a href="#profile" class="nav-item" data-tooltip="Profile" data-section="profile-section">
+                    <i>👤</i> <span>Profile</span>
+                </a>
+                <a href="#settings" class="nav-item" data-tooltip="Settings" data-section="settings-section">
+                    <i>⚙️</i> <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container">
+            <div class="dashboard-header">
+                <h1>Welcome to your Dashboard</h1>
+                <p>Manage your issue reports and track their progress</p>
+            </div>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3>0</h3>
+                        <p>Reports Submitted</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <h3>0</h3>
+                        <p>Issues Resolved</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-content">
+                        <h3>0</h3>
+                        <p>In Progress</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <h3>0</h3>
+                        <p>Community Score</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-actions">
+                <button class="btn-primary" onclick="createReport()">Report New Issue</button>
+                <button class="btn-secondary" onclick="viewAllReports()">View All Reports</button>
+            </div>
+
+            <div class="recent-reports">
+                <h2>Recent Reports</h2>
+                <div class="reports-list">
+                    <div class="no-reports">
+                        <p>No reports yet. <a href="#" onclick="createReport()">Create your first report</a></p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- My Reports Section -->
+            <div id="reports-section" class="reports-section">
+                <div class="section-header">
+                    <h1>My Reports</h1>
+                    <p>View and manage all your submitted reports</p>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn-primary" onclick="createReport()">Create New Report</button>
+                </div>
+                <div class="reports-list">
+                    <div class="no-reports">
+                        <p>No reports yet. <a href="#" onclick="createReport()">Create your first report</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profile-section" class="profile-section">
+                <div class="section-header">
+                    <h1>My Profile</h1>
+                    <p>Manage your account information</p>
+                </div>
+                <form class="profile-form" id="profileForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Update Profile</button>
+                </form>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settings-section" class="settings-section">
+                <div class="section-header">
+                    <h1>Settings</h1>
+                    <p>Customize your experience</p>
+                </div>
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Notifications</h3>
+                        <p>Manage your notification preferences</p>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="emailNotifications" checked>
+                            <span class="checkmark"></span>
+                            Email notifications
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="reportUpdates" checked>
+                            <span class="checkmark"></span>
+                            Report status updates
+                        </label>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Privacy</h3>
+                        <p>Control your privacy settings</p>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="profilePublic">
+                            <span class="checkmark"></span>
+                            Make profile public
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showEmail">
+                            <span class="checkmark"></span>
+                            Show email in reports
+                        </label>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Account</h3>
+                        <p>Manage your account settings</p>
+                        <button class="btn-secondary" onclick="changePassword()">Change Password</button>
+                        <button class="btn-danger" onclick="deleteAccount()">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+    <script>
+        // Dashboard specific functions
+        function createReport() {
+            alert('Report creation feature coming soon!');
+        }
+
+        function viewAllReports() {
+            alert('View all reports feature coming soon!');
+        }
+
+        // Load user data on dashboard load
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const userRole = localStorage.getItem('userRole');
+            
+            if (user.email) {
+                document.querySelector('.dashboard-header h1').textContent = `Welcome back, ${user.user_metadata?.full_name || user.email}!`;
+                
+                // Load profile data
+                document.getElementById('fullName').value = user.user_metadata?.full_name || '';
+                document.getElementById('email').value = user.email;
+            }
+            
+            // Verify citizen access (or redirect if admin/superadmin)
+            if (userRole === 'admin') {
+                window.location.href = 'admin-dashboard.html';
+            } else if (userRole === 'superadmin') {
+                window.location.href = 'superadmin-dashboard.html';
+            }
+            
+            // Load user reports and stats
+            loadUserReports();
+            updateDashboardStats();
+        });
+
+        // Profile form handling
+        document.getElementById('profileForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            try {
+                const user = JSON.parse(localStorage.getItem('user') || '{}');
+                const { error } = await supabase.auth.updateUser({
+                    data: {
+                        full_name: formData.get('fullName'),
+                        phone: formData.get('phone'),
+                        location: formData.get('location'),
+                        bio: formData.get('bio')
+                    }
+                });
+                
+                if (error) throw error;
+                
+                alert('Profile updated successfully!');
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Failed to update profile. Please try again.');
+            }
+        });
+
+        function changePassword() {
+            const newPassword = prompt('Enter new password:');
+            if (!newPassword) return;
+            
+            const confirmPassword = prompt('Confirm new password:');
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Update password logic would go here
+            alert('Password change feature coming soon!');
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                alert('Account deletion feature coming soon!');
+            }
+        }
+    </script>
+</body>
+</html>
