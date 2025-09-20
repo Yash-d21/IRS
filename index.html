@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRS - Issue Reporting System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>IRS</h2>
+                <span>Issue Reporting System</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it Works</a>
+                <a href="#about">About</a>
+                <button class="login-btn" onclick="goToLogin()">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Make Your City Better, One Report at a Time</h1>
+                <p>Join thousands of citizens working together to report civic issues and traffic violations. Help authorities take quick action to make our cities safer, cleaner, and more accountable.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="goToLogin()">Get Started</button>
+                    <button class="btn-secondary" onclick="scrollToFeatures()">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <div class="card-header">
+                        <div class="status-dot active"></div>
+                        <span>Issue Reported</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Pothole on Main Street</h3>
+                        <p>Reported by John D. • 2 hours ago</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <span class="status-text">In Progress</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>How IRS Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Report Issues</h3>
+                    <p>Take photos, add location details, and report civic issues like potholes, garbage dumping, or traffic violations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Validation</h3>
+                    <p>Help validate reports through upvotes and downvotes to ensure authenticity and prioritize real issues.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Quick Action</h3>
+                    <p>Authorities receive reports instantly and can take immediate action to resolve issues in your community.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Track Progress</h3>
+                    <p>Get real-time updates on your reported issues and see the impact you're making in your city.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>Three Simple Steps</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Spot an Issue</h3>
+                    <p>Notice a problem in your community - from traffic violations to infrastructure issues.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Report with Evidence</h3>
+                    <p>Take photos or videos, add location details, and submit your report through the app.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Track Resolution</h3>
+                    <p>Monitor the progress of your report and see how authorities are working to fix the issue.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About IRS</h2>
+                <p>IRS (Issue Reporting System) is a crowdsourced platform that bridges the gap between everyday citizens and government agencies. We believe that every citizen has the power to make their city better by being the eyes and ears of their community.</p>
+                <p>Our platform enables quick reporting, community validation, and transparent tracking of civic issues, making cities safer, cleaner, and more accountable.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>IRS</h3>
+                    <p>Issue Reporting System</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How it Works</a>
+                    <a href="#about">About</a>
+                    <a href="#" onclick="goToLogin()">Login</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 IRS. Making cities better, one report at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
